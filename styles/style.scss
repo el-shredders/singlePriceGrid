@@ -1,0 +1,213 @@
+// $header1: 2.5rem;
+$header2: 2rem;
+$header3: 1.7rem;
+// $header4: 2rem;
+$text: 1.4rem;
+
+//COLORS
+$cyan: hsl(179, 62%, 43%);
+$brightYellow: hsl(71, 73%, 54%);
+
+$lightGray: hsl(204, 43%, 93%);
+$grayishBlue: hsl(218, 22%, 67%);
+
+
+// MIXIN
+
+@mixin flex($justify, $align, $direction) {
+    display: flex;
+    justify-content: $justify;
+    align-items: $align;
+    flex-direction: $direction;
+
+}
+
+// GLOBAL STYLES
+
+*{
+    margin: 0;
+    padding: 0;
+ 
+}
+
+html {
+    /* border-box box model allows us to add padding and border to our elements without increasing their size */
+    box-sizing: border-box;
+
+    font-size: 62.5%;
+    font-family: "Karla", sans-serif;
+    font-weight: 400;
+    color: $grayishBlue;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+
+body {
+    min-height: 100vh;
+}
+
+h2 {
+    font-size:$header2;
+    color: $cyan;
+  
+}
+
+h3 {
+    font-size:$header3;
+    color: $brightYellow;
+   
+}
+
+p {
+    font-size: $text;
+}
+
+// MOBILE FIRST
+
+main {
+    display: grid;
+    grid-template-areas:
+    "top"
+    "bottom-left"
+    "bottom-right";
+    
+    width : 32rem;
+    margin: auto auto;
+    transform: translateY(calc(50vh - 50%));
+    
+}
+
+.grid-element {
+    box-shadow: 0px 10px 50px hsla(216, 22%, 67%, 0.692);
+    display: grid;
+    grid-template-columns: 1fr;
+     padding: 3rem 2.4rem;
+
+}
+
+.top {
+    grid-area : top;
+
+    border-top-left-radius: 1rem;
+    border-top-right-radius: 1rem;
+    h3 {
+        margin: 2.5rem 0;
+    }
+    p {
+        line-height: 2.7rem;
+    }
+}
+
+.bottom-left {
+    grid-area: bottom-left;
+    background: $cyan;
+    color: $lightGray;
+
+    h3 {
+        color: $lightGray;
+        // font-size: 2.8rem;
+        margin-bottom: 1rem;
+    }
+    button {
+        border: none;
+        background: $brightYellow;
+        border-radius: 5px;
+        color: $lightGray;
+        font-weight: 400;
+        padding: 1.5rem 0;
+        margin-top: 4rem;
+        box-shadow: 0px 0px 30px hsla(0, 2%, 9%, 0.315);
+        font-size: $header3;
+
+    }
+
+    p span{
+        vertical-align: middle;
+    }
+
+    p span:nth-child(2) {
+        color:hsla(203, 44%, 93%, 0.63);
+    }
+
+    #price {
+        font-size: 3rem;
+        font-weight: 700;
+    }
+
+    
+}
+
+.bottom-right {
+    border-bottom-left-radius: 1rem;
+    border-bottom-right-radius: 1rem;
+
+    grid-area: bottom-right;
+    background: hsl(179, 47%, 53%);
+    color: $lightGray;
+
+    h3 {
+        color: $lightGray;
+        margin-bottom: 2rem;
+        
+    }
+    p {
+        color: hsla(203, 44%, 93%, 0.8);
+        line-height: 2.2rem;
+    }
+
+}
+
+@media all and (min-width: 768px) {
+  
+    p {
+        font-size: 1.8rem;
+    }
+
+    h3 {
+        font-size: 2.2rem;
+    }
+
+    h2 {
+        font-size: 2.7rem;;
+    }
+
+    main {
+       grid-template-columns: repeat(2, 1fr);
+
+        grid-template-areas: 
+        "top top"
+        "bottom-left bottom-right";
+        width: 75rem;
+    }
+
+    .grid-element {
+        border-radius: 0;
+         padding: 5.5rem 5rem;
+         padding-bottom: 5rem;
+        
+    }
+
+    .top {
+        border-top-left-radius: 1em;
+        border-top-right-radius: 1em;
+        h3 {
+            margin-bottom: 1.0rem;
+        }
+    }
+
+    .bottom-left {
+        border-bottom-left-radius: 1em;
+
+    }
+
+    .bottom-right {
+        border-bottom-right-radius: 1em;
+        p {
+            font-size: 1.6rem;
+        }
+    }
+}
